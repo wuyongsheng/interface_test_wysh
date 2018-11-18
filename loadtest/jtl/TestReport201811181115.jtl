@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testResults version="1.2">
+<httpSample t="585" it="0" lt="585" ct="332" ts="1542554123954" s="true" lb="wysh_http" rc="200" rm="OK" tn="wysh_thread 1-1" dt="text" by="535" sby="140" ng="1" na="1">
+  <java.net.URL>http://httpbin.org/get?name=wysh&amp;passwd=site</java.net.URL>
+</httpSample>
+
+</testResults>

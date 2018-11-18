@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+  
+<project name="ant-jmeter-test" default="all" basedir=".">  
+    <tstamp>  
+        <format property="time" pattern="yyyyMMddhhmm" />  
+    </tstamp>  
+    <!-- 需要改成自己本地的 Jmeter 目录-->  
+    <property name="jmeter.home" value="C:\Users\Administrator\Downloads\apache-jmeter-5.0\apache-jmeter-5.0" />  
+    <!-- jmeter生成jtl格式的结果报告的路径-->  
+    <property name="jmeter.result.jtl.dir" value="C:\Users\Administrator\Downloads\apache-jmeter-5.0\apache-jmeter-5.0\loadtest\jtl" />  
+    <!-- jmeter生成html格式的结果报告的路径-->  
+<property name="jmeter.result.html.dir" value="C:\Users\Administrator\Downloads\apache-jmeter-5.0\apache-jmeter-5.0\loadtest\html" />  
+    <property name="ReportName" value="TestReport" />  
+    <property name="jmeter.result.jtlName" value="${jmeter.result.jtl.dir}/${ReportName}${time}.jtl" />  
+    <property name="jmeter.result.htmlName" value="${jmeter.result.html.dir}/${ReportName}${time}.html" />  
+      
+    <target name="all">  
+        <antcall target="test" />  
+        <antcall target="report" />  
+    </target>  
+      
+    <target name="test">  
+        <taskdef name="jmeter" classname="org.programmerplanet.ant.taskdefs.jmeter.JMeterTask" />  
+        <jmeter jmeterhome="${jmeter.home}" resultlog="${jmeter.result.jtlName}">  
+
+            <testplans dir="C:\Users\Administrator\Downloads\apache-jmeter-5.0\apache-jmeter-5.0\loadtest" includes="*.jmx" />  
+        </jmeter>  
+    </target>  
+          
+    <target name="report">  
+        <xslt in="${jmeter.result.jtlName}"  
+              out="${jmeter.result.htmlName}"  
+              style="${jmeter.home}/extras/jmeter-results-detail-report_30.xsl" />  
+          
+        <!-- 因为上面生成报告的时候，不会将相关的图片也一起拷贝至目标目录，所以，需要手动拷贝 -->  
+        <copy todir="${jmeter.result.html.dir}">  
+            <fileset dir="${jmeter.home}/extras">  
+                <include name="collapse.png" />  
+                <include name="expand.png" />  
+            </fileset>  
+        </copy>  
+    </target>  
+</project>  

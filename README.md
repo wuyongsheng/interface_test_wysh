@@ -119,6 +119,8 @@ jmeter-results-detail-report_30.xsl
 
 ![控制台输出.jpg](https://upload-images.jianshu.io/upload_images/12273007-a052f8dd686031b6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
+项目中涉及到的脚本及文件已上传至我的github中
+
 
 
 
